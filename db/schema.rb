@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_20_202818) do
+ActiveRecord::Schema.define(version: 2019_01_20_204831) do
 
   create_table "cabinets", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+  end
+
+  create_table "strains", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "positives"
+    t.string "negatives"
   end
 
   create_table "users", force: :cascade do |t|
