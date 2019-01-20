@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_20_204831) do
+ActiveRecord::Schema.define(version: 2019_01_20_220122) do
+
+  create_table "cabinet_strains", force: :cascade do |t|
+    t.integer "cabinet_id"
+    t.integer "strain_id"
+  end
 
   create_table "cabinets", force: :cascade do |t|
     t.string "name"
@@ -19,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_204831) do
 
   create_table "strains", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "category"
     t.string "positives"
     t.string "negatives"
   end
