@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_20_220122) do
+ActiveRecord::Schema.define(version: 2019_01_20_232150) do
 
   create_table "cabinet_strains", force: :cascade do |t|
     t.integer "cabinet_id"
