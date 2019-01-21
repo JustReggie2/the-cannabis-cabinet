@@ -1,4 +1,4 @@
 class CabinetStrain < ActiveRecord::Base
-  belongs_to :cabinets
-  belongs_to :strains
+  belongs_to :cabinet
+  belongs_to :strain
 end
