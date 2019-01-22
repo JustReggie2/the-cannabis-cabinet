@@ -9,11 +9,14 @@ class UsersController < ApplicationController
     if !(params.has_value?(""))
       user = User.create(params[:user])
       session[:user_id] = user.id
-      redirect 'users/home'
+      redirect 'users/myaccount'
     else
       redirect 'users/signup'
     end
   end
 
+  get '/login' do
 
+    erb :'users/login'
+  end
 end
