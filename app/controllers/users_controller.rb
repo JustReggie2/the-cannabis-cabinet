@@ -2,26 +2,26 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if Helpers.logged_in?(session)
-      redirect 'users/myaccount'
+      redirect '/myaccount'
     end
-    erb :'users/signup'
+    erb :signup
   end
 
   post '/signup' do
     if !(params.has_value?(""))
       user = User.create(params[:user])
       session[:user_id] = user.id
-      redirect 'users/myaccount'
+      redirect '/myaccount'
     else
-      redirect 'users/signup'
+      redirect '/signup'
     end
   end
 
   get '/login' do
     if Helpers.logged_in?(session)
-      redirect 'users/myaccount'
+      redirect '/myaccount'
     end
-    erb :'users/login'
+    erb :login
   end
 
   post '/login' do
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   get '/myaccount' do
     @user = User.find(session[:user_id])
     if @user
-      erb :'users/myaccount'
+      erb :myaccount
     end
   end
 
