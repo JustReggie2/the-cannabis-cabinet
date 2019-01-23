@@ -39,4 +39,11 @@ class UsersController < ApplicationController
       erb :'users/myaccount'
     end
   end
+
+  get '/logout' do
+    if Helpers.logged_in?(session)
+      session.clear
+    end
+    redirect '/login'
+  end
 end
