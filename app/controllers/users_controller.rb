@@ -4,12 +4,12 @@ class UsersController < ApplicationController
     if Helpers.logged_in?(session)
       redirect '/myaccount'
     end
-    erb :signup
+    erb :'users/signup'
   end
 
   post '/signup' do
     if !(params.has_value?(""))
-      user = User.create(params[:user])
+      user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = user.id
       redirect '/myaccount'
     else
@@ -21,23 +21,24 @@ class UsersController < ApplicationController
     if Helpers.logged_in?(session)
       redirect '/myaccount'
     end
-    erb :login
+    erb :'users/login'
   end
 
   post '/login' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect 'users/myaccount'
+      redirect '/myaccount'
     end
     redirect '/login'
   end
 
   get '/myaccount' do
-    @user = User.find(session[:user_id])
-    if @user
-      erb :myaccount
-    end
+    @user = User.find_by_id(session[:user_id])
+    erb :'users/show'
+    # if @user
+    #   erb :'users/show'
+    # end
   end
 
   get '/logout' do
