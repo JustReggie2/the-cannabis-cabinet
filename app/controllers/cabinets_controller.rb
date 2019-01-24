@@ -7,4 +7,8 @@ class CabinetsController < ApplicationController
       redirect 'users/login'
     end
   end
+
+  post '/mycabinets' do
+    params
+  end
 end
