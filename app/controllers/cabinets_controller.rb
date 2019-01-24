@@ -9,6 +9,11 @@ class CabinetsController < ApplicationController
   end
 
   post '/mycabinets' do
-    params
+    cabinet = Cabinet.create(name: params[:cabinet_name])
+    cabinet.user = User.find_by_id(session[:user_id])
+    cabinet.strain_ids = params[:strains]
+    cabinet.save
+
+    redirect "mycabinets/#{cabinet.slug}"
   end
 end
