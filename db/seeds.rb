@@ -12,11 +12,26 @@ strains_list = {
   "Candyland" => {
     category: "Sativa",
     positives: "Happy and good for depression.",
-    negatives: "Dry mouth"
+    negatives: "Dry mouth."
   },
   "Pink Lemonade" => {
     category: "Hybrid",
     positives: "Happy and good for stress.",
-    negatives: "Dry mouth and can become anxious"
+    negatives: "Dry mouth and can become anxious."
   },
+  "Forbidden Fruit" => {
+    category: "Indica",
+    positives: "Relaxing and good for stress.",
+    negatives: "Dry mouth."
+  },
+  "Harlequin" => {
+    category: "Sativa",
+    positives: "Uplifting and good for pain.",
+    negatives: "Dry Mouth."
+  },
+  "Blue Dream" => {
+    category: "Hybrid",
+    positives: "Happy and good for stress.",
+    negatives: "Dry mouth and dry eyes."
+  }
 }
