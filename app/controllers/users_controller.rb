@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if Helpers.logged_in?(session)
       redirect '/myaccount'
     end
-    erb :'users/login'
+    erb :'users/login' # had to specify users because coming from index page and login page
   end
 
   post '/login' do
