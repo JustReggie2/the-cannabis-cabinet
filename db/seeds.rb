@@ -35,3 +35,12 @@ strains_list = {
     negatives: "Dry mouth and dry eyes."
   }
 }
+
+strains_list.each do |name, strain_hash|
+  s = Strain.new
+  s.name = name
+  strain_hash.each do |attribute, value|
+    s[attribute] = value
+  end
+  s.save
+end
