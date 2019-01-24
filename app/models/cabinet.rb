@@ -4,4 +4,12 @@ class Cabinet < ActiveRecord::Base
   belongs_to :user
   has_many :cabinet_strains
   has_many :strains, through: :cabinet_strains
+
+  def slug
+    name.parameterize
+  end
+
+  def find_by_slug(slug)
+    self.all.detect {|i| i.name.parameterize == slug}
+  end
 end
