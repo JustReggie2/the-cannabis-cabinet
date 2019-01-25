@@ -10,6 +10,7 @@
   <% @cabinet.strains.each do |strain| %>
     <a href="/strains/<%= strain.slug %>"><h3><%= strain.name %></h3></a>
       <br>
+  <% end %>
 <% else %>
   <h3><%= @cabinet.name %> is empty. Please create or add strains <a href="#">here.</a>
 <% end %>
