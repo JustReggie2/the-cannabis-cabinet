@@ -8,9 +8,9 @@ class CabinetsController < ApplicationController
     end
   end
 
-  get '/mycabinets/:slug' do
+  get '/mycabinets/:id' do
     if Helpers.logged_in?(session)
-      @cabinet = Cabinet.find_by_slug(params[:slug])
+      @cabinet = Cabinet.find_by(params[:id])
     else
       redirect 'users/login'
     end
@@ -27,7 +27,7 @@ class CabinetsController < ApplicationController
       cabinet.strain_ids = params[:strains]
       cabinet.save
 
-      redirect "mycabinets/#{cabinet.slug}"
+      redirect "mycabinets/#{cabinet.id}"
     else
       redirect 'users/login'
     end
