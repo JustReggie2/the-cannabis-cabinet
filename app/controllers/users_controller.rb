@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/myaccount'
     end
-    redirect '/login'
+    redirect '/'
   end
 
   get '/myaccount' do
