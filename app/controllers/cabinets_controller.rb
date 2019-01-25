@@ -8,11 +8,22 @@ class CabinetsController < ApplicationController
     end
   end
 
+  get '/mycabinets/:slug' do
+    if Helpers.logged_in?(session)
+      @cabinet = Cabinet.find_by_slug(params[:slug])
+    else
+      redirect 'users/login'
+    end
+    erb :'cabinets/show'
+  end
+
   post '/mycabinets' do
     @user = Helpers.current_user(session)
-    if @user
+    if !@user
+      redirect 'users/login'
+    elsif !params[:cabinet_name].empty?
       cabinet = Cabinet.create(name: params[:cabinet_name])
-      cabinet.user = User.find_by_id(session[:user_id])
+      cabinet.user = @user
       cabinet.strain_ids = params[:strains]
       cabinet.save
 
