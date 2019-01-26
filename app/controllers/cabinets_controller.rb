@@ -27,6 +27,16 @@ class CabinetsController < ApplicationController
     erb :'cabinets/show'
   end
 
+  patch '/mycabinets/:id' do
+    cabinet = Cabinet.find_by_id(params[:id])
+
+    redirect "/mycabinets/#{cabinet.id}/edit" unless !params[:cabinet_name].empty?
+    # if empty add flash message
+    cabinet.update(name: params[:cabinet_name])
+    cabinet.strain_ids = params[:strains]
+    cabinet.save
+  end
+
   post '/mycabinets' do
     @user = Helpers.current_user(session)
     if !@user
