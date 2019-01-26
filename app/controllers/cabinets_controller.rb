@@ -35,6 +35,8 @@ class CabinetsController < ApplicationController
     cabinet.update(name: params[:cabinet_name])
     cabinet.strain_ids = params[:strains]
     cabinet.save
+
+    redirect "/mycabinets/#{cabinet.id}"
   end
 
   post '/mycabinets' do
