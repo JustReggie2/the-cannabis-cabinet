@@ -1,0 +1,18 @@
+<h1>Edit Cabinet <%= @cabinet.name %></h1>
+
+<div class="">
+  <form class="" action="/mycabinets/<%= @cabinet.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="cabinet_name">Cabinet Name:</label>
+      <input type="text" name="cabinet_name" value="<%= @cabinet.name %>">
+      <br>
+    <label for="strain_name">Strains (uncheck to remove):</label>
+    <% @cabinet.strains.each do |strain| %>
+        <br>
+      <input type="checkbox" name="strains[]" value="<%= strain.id %>"
+        <%= 'checked' if @cabinet.strans.include?(strain) %>><%= strain.name %></input>
+        <br>
+    <% end %>
+    <input type="submit" name="submit" value="Update">
+  </form>
+</div>
