@@ -7,8 +7,7 @@
 <div class="container">
   <% @user.cabinets.each do |cabinet| %>
     <div class="row">
-      <a href="#"><%= cabinet.name %></a>
-      <br>
+      <a href="/mycabinets/<%= cabinet.id %>"><h2><%= cabinet.name %></h2></a>
       <% cabinet.strains.each do |strain| %>
         <a href="#"><%= strain.name %></a>
         <br>
