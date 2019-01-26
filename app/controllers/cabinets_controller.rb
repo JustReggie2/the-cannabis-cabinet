@@ -8,6 +8,15 @@ class CabinetsController < ApplicationController
     end
   end
 
+  get '/mycabinets/:id/edit' do
+    redirect 'users/login' unless Helpers.logged_in?(session)
+
+    @cabinet = Cabinet.find_by_id(params[:id])
+
+    if @cabinet.user == Helpers.current_user(session)
+      erb :'cabinets/edit'
+  end
+  
   get '/mycabinets/:id' do
     if Helpers.logged_in?(session)
       @cabinet = Cabinet.find_by(params[:id])
