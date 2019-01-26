@@ -15,8 +15,9 @@ class CabinetsController < ApplicationController
 
     if @cabinet.user == Helpers.current_user(session)
       erb :'cabinets/edit'
+    end
   end
-  
+
   get '/mycabinets/:id' do
     if Helpers.logged_in?(session)
       @cabinet = Cabinet.find_by(params[:id])
