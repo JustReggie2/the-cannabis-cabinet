@@ -10,9 +10,9 @@
     <% @cabinet.strains.each do |strain| %>
         <br>
       <input type="checkbox" name="strains[]" value="<%= strain.id %>"
-        <%= 'checked' if @cabinet.strans.include?(strain) %>><%= strain.name %></input>
-        <br>
+        <%= 'checked' if @cabinet.strains.include?(strain) %>><%= strain.name %></input>
     <% end %>
+    <br>
     <input type="submit" name="submit" value="Update">
   </form>
 </div>
