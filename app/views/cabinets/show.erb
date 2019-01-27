@@ -5,13 +5,18 @@
 
 <h2>Your collected Strains:</h2>
 
-  <br>
+  <!-- <br> -->
 
 <% if !@cabinet.strains.empty? %>
   <% @cabinet.strains.each do |strain| %>
     <a href="/strains/<%= strain.slug %>"><h3><%= strain.name %></h3></a>
-      <br>
+      <!-- <br> -->
   <% end %>
 <% else %>
   <h3><%= @cabinet.name %> is empty. Please create or add strains <a href="#">here.</a>
 <% end %>
+
+<form class="" action="/mycabinets/<%= @cabinet.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" name="submit" value="Delete Cabinet">
+</form>
