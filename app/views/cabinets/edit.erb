@@ -1,7 +1,7 @@
 <h1>Edit Cabinet <%= @cabinet.name %></h1>
 
 <div class="">
-  <form class="" action="/mycabinets/<%= @cabinet.id %>" method="post">
+  <form class="" action="/mycabinets/<%= @cabinet.slug %>" method="post">
     <input type="hidden" name="_method" value="patch">
     <label for="cabinet_name">Cabinet Name:</label>
       <input type="text" name="cabinet_name" value="<%= @cabinet.name %>">
@@ -16,5 +16,5 @@
     <input type="submit" name="submit" value="Update">
   </form>
   <br>
-  <a href="/mycabinets/<%= @cabinet.id %>">Back</a>
+  <a href="/mycabinets/<%= @cabinet.slug %>">Back</a>
 </div>

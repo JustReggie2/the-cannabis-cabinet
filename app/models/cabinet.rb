@@ -9,7 +9,7 @@ class Cabinet < ActiveRecord::Base
     name.parameterize
   end
 
-  def find_by_slug(slug)
+  def self.find_by_slug(slug)
     self.all.detect {|i| i.name.parameterize == slug}
   end
 end

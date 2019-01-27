@@ -8,35 +8,35 @@ class CabinetsController < ApplicationController
     end
   end
 
-  get '/mycabinets/:id/edit' do
+  get '/mycabinets/:slug/edit' do
     redirect 'users/login' unless Helpers.logged_in?(session)
 
-    @cabinet = Cabinet.find_by_id(params[:id])
+    @cabinet = Cabinet.find_by_slug(params[:slug])
 
     if @cabinet.user == Helpers.current_user(session)
       erb :'cabinets/edit'
     end
   end
 
-  get '/mycabinets/:id' do
+  get '/mycabinets/:slug' do
     if Helpers.logged_in?(session)
-      @cabinet = Cabinet.find_by(params[:id])
+      @cabinet = Cabinet.find_by_slug(params[:slug])
     else
       redirect 'users/login'
     end
     erb :'cabinets/show'
   end
 
-  patch '/mycabinets/:id' do
-    cabinet = Cabinet.find_by_id(params[:id])
+  patch '/mycabinets/:slug' do
+    cabinet = Cabinet.find_by_slug(params[:slug])
 
-    redirect "/mycabinets/#{cabinet.id}/edit" unless !params[:cabinet_name].empty?
+    redirect "/mycabinets/#{cabinet.slug}/edit" unless !params[:cabinet_name].empty?
     # if empty add flash message
     cabinet.update(name: params[:cabinet_name])
     cabinet.strain_ids = params[:strains]
     cabinet.save
 
-    redirect "/mycabinets/#{cabinet.id}"
+    redirect "/mycabinets/#{cabinet.slug}"
   end
 
   post '/mycabinets' do
@@ -49,15 +49,15 @@ class CabinetsController < ApplicationController
       cabinet.strain_ids = params[:strains]
       cabinet.save
 
-      redirect "mycabinets/#{cabinet.id}"
+      redirect "mycabinets/#{cabinet.slug}"
     else
       redirect 'users/login'
     end
   end
 
-  delete '/mycabinets/:id/delete' do
+  delete '/mycabinets/:slug/delete' do
     if Helpers.logged_in?(session)
-      @cabinet = Cabinet.find_by_id(params[:id])
+      @cabinet = Cabinet.find_by_slug(params[:slug])
       if @cabinet.user == Helpers.current_user(session)
         @cabinet.delete
         redirect to '/myaccount'
