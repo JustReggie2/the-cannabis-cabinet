@@ -7,4 +7,5 @@ require './config/environment'
 use Rack::MethodOverride
 use UsersController
 use CabinetsController
+use StrainsController
 run ApplicationController
