@@ -6,4 +6,10 @@ class StrainsController < ApplicationController
     erb :'strains/index'
   end
 
+  get '/strains/:slug' do
+    @strain = Strain.find_by_slug(params[:slug])
+
+    erb :'strains/show'
+  end
+
 end
