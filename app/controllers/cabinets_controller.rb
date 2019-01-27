@@ -54,4 +54,19 @@ class CabinetsController < ApplicationController
       redirect 'users/login'
     end
   end
+
+  delete '/mycabinets/:id/delete' do
+    if Helpers.logged_in?(session)
+      @cabinet = Cabinet.find_by_id(params[:id])
+      if @cabinet.user == Helpers.current_user(session)
+        @cabinet.delete
+        redirect to '/myaccount'
+      else
+        # flash message "You are not allowed to delete this cabinet"
+        redirect to '/myaccount'
+      end
+    else
+      redirect to 'users/login'
+    end
+  end
 end
