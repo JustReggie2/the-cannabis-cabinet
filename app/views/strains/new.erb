@@ -5,6 +5,19 @@
     <label for="strain_name">Strain Name:</label>
       <input type="text" name="strain_name" id="strain_name">
       <br>
-      <label for="category"></label>
+    <label for="category">Category:</label>
+      <select class="" name="category">
+        <% Strain.all.map(&:category).uniq.each do |s_cat| %>
+          <option value="<%= s_cat %>"><%= s_cat %></option>
+        <% end %>
+      </select>
+    <br>
+    <label for="positives">Positive Effects:</label>
+      <textarea name="positives" rows="8" cols="80" placeholder="What are the positive effects of this strain?"></textarea>
+    <br>
+    <label for="negatives">Negative Effects:</label>
+      <textarea name="negatives" rows="8" cols="80" placeholder="What are the negative effects of this strain?"></textarea>
+    <br>
+  <input type="submit" name="submit" value="Create Strain">
   </form>
 </div>
