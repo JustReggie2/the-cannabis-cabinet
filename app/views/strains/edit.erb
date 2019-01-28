@@ -1,0 +1,24 @@
+<h1>Edit <%= @strain.name %></h1>
+
+<div class="">
+  <form class="" action="/strains/<%= @strain.slug %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="strain_name">Strain Name:</label>
+      <input type="text" name="strain_name" value="<%= @strain.name %>">
+      <br>
+    <label for="category">Category:</label>
+      <select class="" name="category">
+        <% Strain.all.map(&:category).uniq.each do |s_cat| %>
+          <option value="<%= s_cat %>"><%= s_cat %></option>
+        <% end %>
+      </select>
+    <br>
+    <label for="positives">Positive Effects:</label>
+      <textarea name="positives" rows="8" cols="80" values="@strain.positives"></textarea>
+    <br>
+    <label for="negatives">Negative Effects:</label>
+      <textarea name="negatives" rows="8" cols="80" values="@strain.negatives"></textarea>
+    <br>
+    <input type="submit" name="submit" value="Update Strain">
+  </form>
+</div>
