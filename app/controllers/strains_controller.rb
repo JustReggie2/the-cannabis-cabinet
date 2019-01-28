@@ -14,6 +14,8 @@ class StrainsController < ApplicationController
         strain.positives = params[:positives]
         strain.negatives = params[:negatives]
         strain.save
+
+        redirect 'strains/:slug'
       else
         redirect 'strains/new'
       end
