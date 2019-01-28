@@ -9,12 +9,12 @@
     <div class="row">
       <a href="/mycabinets/<%= cabinet.slug %>"><h2><%= cabinet.name %></h2></a>
       <% cabinet.strains.each do |strain| %>
-        <a href="#"><%= strain.name %></a>
+        <a href="/strains/<%= strain.slug %>"><%= strain.name %></a>
         <br>
       <% end %>
     </div>
   <% end %>
 </div>
 
-
+<p><a href="/logout">Log Out</a></p>
 <!-- flash message, if cabinet empty prompt to create one -->
