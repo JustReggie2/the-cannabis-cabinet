@@ -33,6 +33,14 @@ class StrainsController < ApplicationController
     end
   end
 
+  get '/strains/:slug/edit' do
+    redirect 'users/login' unless Helpers.logged_in?(session)
+
+    @strain = Strain.find_by_slug(params[:slug])
+
+    erb :'strains/edit'
+  end
+  
   get '/strains/:slug' do
     @strain = Strain.find_by_slug(params[:slug])
 
