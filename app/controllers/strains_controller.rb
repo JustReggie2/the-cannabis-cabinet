@@ -40,10 +40,10 @@ class StrainsController < ApplicationController
 
     erb :'strains/edit'
   end
-  
+
   get '/strains/:slug' do
     @strain = Strain.find_by_slug(params[:slug])
-
+    @user = Helpers.current_user(session)
     erb :'strains/show'
   end
 
