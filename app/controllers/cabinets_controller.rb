@@ -8,6 +8,14 @@ class CabinetsController < ApplicationController
     end
   end
 
+  post '/mycabinets/add' do
+    @user = Helpers.current_user(session)
+    if !@user
+      redirect 'users/login'
+    else
+      put params
+    end
+  end
   get '/mycabinets/:slug/edit' do
     redirect 'users/login' unless Helpers.logged_in?(session)
 
