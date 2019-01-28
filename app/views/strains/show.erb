@@ -8,3 +8,13 @@
 
 <h3>Negatives:</h3>
 <p><h3><%= @strain.negatives %></h3></p>
+
+<form class="" action="/mycabinets/add" method="post">
+  <label for="cabinet_add">Add to cabinet:</label>
+    <select class="" name="cabinet_add">
+      <% @user.cabinets.each do |cabinet| %>
+        <option value="<%= cabinet.name %>"><%= cabinet.name %></option>
+      <% end %>
+    </select>
+  <input type="submit" name="submit" value="Add Strain">
+</form>
