@@ -6,6 +6,22 @@ class StrainsController < ApplicationController
     erb :'strains/index'
   end
 
+  post '/strains' do
+    if Helpers.current_user(session)
+      if !params[:strain_name].empty? && !params[:positives].empty? && !params[:negatives].empty?
+        strain = Strain.create(name: params[:strain_name])
+        strain.category = params[:category]
+        strain.positives = params[:positives]
+        strain.negatives = params[:negatives]
+        strain.save
+      else
+        redirect 'strains/new'
+      end
+    else
+      redirect 'users/login'
+    end
+  end
+
   get '/strains/new' do
     if Helpers.logged_in?(session)
       erb :'/strains/new'
