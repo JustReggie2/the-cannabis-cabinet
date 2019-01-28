@@ -49,7 +49,7 @@ class CabinetsController < ApplicationController
       cabinet.strain_ids = params[:strains]
       cabinet.save
 
-      redirect "mycabinets/#{cabinet.slug}"
+      redirect "/mycabinets/#{cabinet.slug}"
     else
       redirect 'users/login'
     end
