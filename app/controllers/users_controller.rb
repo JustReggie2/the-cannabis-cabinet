@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    if Helpers.logged_in?(session)
+    if Helpers.current_user(session)
       redirect '/myaccount'
     end
     erb :'users/signup'
