@@ -39,4 +39,19 @@ class StrainsController < ApplicationController
     erb :'strains/show'
   end
 
+  patch '/strains/:slug' do
+    @strain = Strain.find_by_slug(params[:slug])
+
+    if !params[:strain_name].empty? && !params[:positives].empty? && !params[:negatives].empty?
+      @strain.update(name: params[:strain_name])
+      @strain.category = params[:category]
+      @strain.positives = params[:positives]
+      @strain.negatives = params[:negatives]
+      @strain.save
+
+      redirect "/strains/#{@strain.slug}"
+    else
+      redirect "/strains/#{@strain.slug}/edit"
+    end
+  end
 end
