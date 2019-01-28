@@ -9,7 +9,7 @@
   <h2>Hybrid:</h2>
   <% @strains.each do |strain| %>
     <% if strain.category.downcase == "hybrid" %>
-      <a href="/strains/:slug"><%= strain.name %></a>
+      <a href="/strains/<%= strain.slug %>"><%= strain.name %></a>
     <% end %>
   <% end %>
 </div>
@@ -18,7 +18,7 @@
   <h2>Indica:</h2>
   <% @strains.each do |strain| %>
     <% if strain.category.downcase == "indica" %>
-      <a href="/strains/:slug"><%= strain.name %></a>
+      <a href="/strains/<%= strain.slug %>"><%= strain.name %></a>
     <% end %>
   <% end %>
 </div>
@@ -27,7 +27,7 @@
   <h2>Sativa:</h2>
   <% @strains.each do |strain| %>
     <% if strain.category.downcase == "sativa" %>
-      <a href="/strains/:slug"><%= strain.name %></a>
+      <a href="/strains/<%= strain.slug %>"><%= strain.name %></a>
     <% end %>
   <% end %>
 </div>
