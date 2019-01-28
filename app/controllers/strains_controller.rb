@@ -7,6 +7,7 @@ class StrainsController < ApplicationController
   end
 
   post '/strains' do
+    puts params
     if Helpers.current_user(session)
       if !params[:strain_name].empty? && !params[:positives].empty? && !params[:negatives].empty?
         strain = Strain.create(name: params[:strain_name])
@@ -15,7 +16,7 @@ class StrainsController < ApplicationController
         strain.negatives = params[:negatives]
         strain.save
 
-        redirect 'strains/:slug'
+        redirect "/strains/#{strain.slug}"
       else
         redirect 'strains/new'
       end
