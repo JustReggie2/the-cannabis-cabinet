@@ -10,11 +10,12 @@
 <p><h3><%= @strain.negatives %></h3></p>
 
 <form class="" action="/mycabinets/add" method="post">
-  <label for="cabinet_add">Add to cabinet:</label>
-    <select class="" name="cabinet_add">
+  <label for="cabinet_id">Add to cabinet:</label>
+    <select class="" name="cabinet_id">
       <% @user.cabinets.each do |cabinet| %>
-        <option value="<%= cabinet.name %>"><%= cabinet.name %></option>
+        <option value="<%= cabinet.id %>"><%= cabinet.name %></option>
       <% end %>
     </select>
+  <input type="hidden" name="strain[]" value="<%= @strain.id %>">
   <input type="submit" name="submit" value="Add Strain">
 </form>

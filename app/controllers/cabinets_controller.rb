@@ -13,9 +13,15 @@ class CabinetsController < ApplicationController
     if !@user
       redirect 'users/login'
     else
-      put params
+      @cabinet = Cabinet.find_by_id(params[:cabinet_id])
+      @cabinet.strain_ids << param[:strain]
+
+
+      redirect "/mycabinets/#{cabinet.slug}"
+      # puts params
     end
   end
+
   get '/mycabinets/:slug/edit' do
     redirect 'users/login' unless Helpers.logged_in?(session)
 
