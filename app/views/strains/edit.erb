@@ -14,10 +14,10 @@
       </select>
     <br>
     <label for="positives">Positive Effects:</label>
-      <textarea name="positives" rows="8" cols="80" values="@strain.positives"></textarea>
+      <textarea name="positives" rows="8" cols="80"><%= @strain.positives %></textarea>
     <br>
     <label for="negatives">Negative Effects:</label>
-      <textarea name="negatives" rows="8" cols="80" values="@strain.negatives"></textarea>
+      <textarea name="negatives" rows="8" cols="80"><%= @strain.negatives %></textarea>
     <br>
     <input type="submit" name="submit" value="Update Strain">
   </form>
