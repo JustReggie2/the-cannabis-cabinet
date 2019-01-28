@@ -13,7 +13,7 @@
       <!-- <br> -->
   <% end %>
 <% else %>
-  <h3><%= @cabinet.name %> is empty. Please create or add strains <a href="#">here.</a>
+  <h3><%= @cabinet.name %> is empty. Please create or add strains <a href="/strains">here.</a>
 <% end %>
 
 <form class="" action="/mycabinets/<%= @cabinet.slug %>/delete" method="post">
