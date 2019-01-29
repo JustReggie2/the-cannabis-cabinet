@@ -13,8 +13,9 @@ class CabinetsController < ApplicationController
     if !@user
       redirect 'users/login'
     else
-      @cabinet = Cabinet.find_by_id(params[:cabinet_id])
-      @cabinet.strain_ids << param[:strain]
+      cabinet = Cabinet.find_by_id(params[:cabinet_id])
+      strain = Strain.find_by_id(params[:strain])
+      cabinet.strains << strain
 
 
       redirect "/mycabinets/#{cabinet.slug}"
