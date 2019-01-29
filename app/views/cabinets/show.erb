@@ -1,11 +1,10 @@
-<a href="/myaccount">Home</a> <a href="/mycabinets/<%= @cabinet.slug %>/edit">Edit</a>
+<a href="/myaccount">Home</a>
+<a href="/mycabinets/<%= @cabinet.slug %>/edit">Edit Cabinet</a>
+<a href="/strains">Strain Library</a>
 <h1><%= @cabinet.name %></h1>
-
-  <br>
 
 <h2>Your collected Strains:</h2>
 
-  <!-- <br> -->
 
 <% if !@cabinet.strains.empty? %>
   <% @cabinet.strains.each do |strain| %>
