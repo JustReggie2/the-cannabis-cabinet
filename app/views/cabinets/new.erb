@@ -12,13 +12,10 @@
     <label>Add some Strains to your Cabinet:</label>
     <% Strain.all.shuffle.take(5).each do |strain| %>
       <br>
-      <input type="checkbox" name="strains[]" value="<%= strain.id %>"><%= strain.name %><br><%= strain.category %></input>
+      <input type="checkbox" name="strains[]" value="<%= strain.id %>"><%= strain.name %> <small><%= strain.category %></small></input>
     <% end %>
     <!-- iterate over strains and random list 5 -->
       <br>
     <input type="submit" value="Create Cabinet">
   </form>
-    <br>
-  <h3>Create a new <a href="/strains/new">Strain</a>.</h3>
-  <h3>Explore our <a href="/strains">Strain Library</a>.</h3>
 </div>
