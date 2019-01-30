@@ -41,10 +41,8 @@ use Rack::Flash
 
   get '/myaccount' do
     @user = User.find_by_id(session[:user_id])
+
     erb :'users/show'
-    # if @user
-    #   erb :'users/show'
-    # end
   end
 
   get '/logout' do
