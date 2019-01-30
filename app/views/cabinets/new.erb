@@ -1,6 +1,9 @@
 <!-- create cabinet name -->
 <!-- choose from list of existing strains to immediately add to cabinet -->
 <!-- submit -->
+<% if flash.has?(:message) %>
+ <%= flash[:message] %>
+<% end %>
 
 <h1>Let's create a new Cannabis Cabinet!</h1>
 
