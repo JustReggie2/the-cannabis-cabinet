@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+ <b><%= flash[:message] %></b>
+<% end %>
+
 <h1>Edit Cabinet <%= @cabinet.name %></h1>
 
 <div class="">
