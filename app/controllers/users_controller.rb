@@ -26,7 +26,7 @@ use Rack::Flash
     if Helpers.logged_in?(session)
       redirect '/myaccount'
     end
-    erb :'users/login' # had to specify users because coming from index page and login page
+    erb :'users/login'
   end
 
   post '/login' do
@@ -35,7 +35,8 @@ use Rack::Flash
       session[:user_id] = user.id
       redirect '/myaccount'
     end
-    redirect '/'
+    flash[:message] = "Incorrect password."
+    redirect '/login'
   end
 
   get '/myaccount' do
