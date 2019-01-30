@@ -1,21 +1,24 @@
 class UsersController < ApplicationController
 use Rack::Flash
   get '/signup' do
-      erb :'users/signup'
-    # if Helpers.logged_in?(session)
-    #   redirect '/myaccount'
-    # else
-    #   erb :'users/signup'
-    # end
+    erb :'users/signup'
   end
 
   post '/signup' do
-    if !(params.has_value?(""))
-      user = User.create(username: params[:username], email: params[:email], password: params[:password])
-      session[:user_id] = user.id
-      redirect '/myaccount'
+    @users = User.all
+    if @users.all?{|u| u.email != params[:email]}
+      if !(params.has_value?(""))
+        user = User.create(username: params[:username], email: params[:email], password: params[:password])
+        session[:user_id] = user.id
+        flash[:message] = "Success! New account created."
+        redirect '/myaccount'
+      else
+        flash[:message] = "All fields must be filled out."
+        redirect '/signup'
+      end
     else
-      redirect '/signup'
+      flash[:message] = "You have already signed up, please login in."
+      redirect '/login'
     end
   end
 
