@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    if Helpers.logged_in?(session)
-      redirect '/myaccount'
-    else
       erb :'users/signup'
-    end
+    # if Helpers.logged_in?(session)
+    #   redirect '/myaccount'
+    # else
+    #   erb :'users/signup'
+    # end
   end
 
   post '/signup' do
