@@ -59,6 +59,7 @@ use Rack::Flash
   post '/mycabinets' do
     @user = Helpers.current_user(session)
     if !@user
+      flash[:message] = "You must be logged in."
       redirect 'users/login'
     elsif !params[:cabinet_name].empty?
       if @user.cabinets.all?{|c| c.name != params[:cabinet_name]}
@@ -70,8 +71,10 @@ use Rack::Flash
         flash[:message] = "There is already a cabinet by that name. Try again."
         redirect '/mycabinets/new'
       end
+      flash[:message] = "Cabinet name is required."
       redirect "/mycabinets/#{cabinet.slug}"
     else
+      flash[:message] = "You must be logged in."
       redirect 'users/login'
     end
   end
