@@ -46,14 +46,16 @@ use Rack::Flash
 
   patch '/mycabinets/:slug' do
     cabinet = Cabinet.find_by_slug(params[:slug])
-
-    redirect "/mycabinets/#{cabinet.slug}/edit" unless !params[:cabinet_name].empty?
-    # if empty add flash message
-    cabinet.update(name: params[:cabinet_name])
-    cabinet.strain_ids = params[:strains]
-    cabinet.save
-
-    redirect "/mycabinets/#{cabinet.slug}"
+    if !params[:cabinet_name].empty?
+      cabinet.update(name: params[:cabinet_name])
+      cabinet.strain_ids = params[:strains]
+      cabinet.save
+      flash[:message] = "Cabinet updated successfully."
+      redirect "/mycabinets/#{cabinet.slug}"
+    else
+      flash[:message] = "Cabinet name is required."
+      redirect "/mycabinets/#{cabinet.slug}/edit"
+    end
   end
 
   post '/mycabinets' do
@@ -71,10 +73,10 @@ use Rack::Flash
         flash[:message] = "There is already a cabinet by that name. Try again."
         redirect '/mycabinets/new'
       end
-      flash[:message] = "Cabinet name is required."
+      flash[:message] = "Cabinet successfully created."
       redirect "/mycabinets/#{cabinet.slug}"
     else
-      flash[:message] = "You must be logged in."
+      flash[:message] = "Cabinet must have a name."
       redirect 'users/login'
     end
   end
