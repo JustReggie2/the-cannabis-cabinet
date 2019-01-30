@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+ <b><%= flash[:message] %></b>
+<% end %>
+
 <h1><%= @user.username %>, welcome to your cabinet hub.</h1>
   <br>
 <h3>Create a new <a href="/mycabinets/new">cabinet</a>.</h3>
