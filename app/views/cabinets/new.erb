@@ -12,7 +12,7 @@
     <label for="cabinet_name">Cabinet Name:</label>
       <input type="text" name="cabinet_name" id="cabinet_name">
       <br>
-    <label>Add some Strains to your Cabinet:</label>
+    <label>Here is a random selection of Strains you can add to your Cabinet if you so choose:</label>
     <% Strain.all.shuffle.take(5).each do |strain| %>
       <br>
       <input type="checkbox" name="strains[]" value="<%= strain.id %>"><%= strain.name %> <small><%= strain.category %></small></input>
