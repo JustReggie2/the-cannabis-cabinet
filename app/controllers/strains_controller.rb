@@ -1,5 +1,5 @@
 class StrainsController < ApplicationController
-
+use Rack::Flash
   get '/strains' do
     @strains = Strain.all
 
@@ -8,7 +8,7 @@ class StrainsController < ApplicationController
 
   post '/strains' do
     puts params
-    if Helpers.current_user(session)
+    if Helpers.logged_in?(session)
       if !params[:strain_name].empty? && !params[:positives].empty? && !params[:negatives].empty?
         strain = Strain.create(name: params[:strain_name])
         strain.category = params[:category]
@@ -18,9 +18,11 @@ class StrainsController < ApplicationController
 
         redirect "/strains/#{strain.slug}"
       else
+        flash[:message] = "All fields must be completed."
         redirect 'strains/new'
       end
     else
+      flash[:message] = "You must be logged in."
       redirect 'users/login'
     end
   end
