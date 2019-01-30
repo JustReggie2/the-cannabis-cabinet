@@ -84,12 +84,14 @@ use Rack::Flash
       @cabinet = Cabinet.find_by_slug(params[:slug])
       if @cabinet.user == Helpers.current_user(session)
         @cabinet.delete
+        flash[:message] = "Cabinet has been deleted successfully."
         redirect to '/myaccount'
       else
-        # flash message "You are not allowed to delete this cabinet"
+        flash[:message] = "Something went wrong. Try again."
         redirect to '/myaccount'
       end
     else
+      flash[:message] = "You must be logged in."
       redirect to 'users/login'
     end
   end
