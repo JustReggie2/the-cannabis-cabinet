@@ -1,5 +1,7 @@
-class CabinetsController < ApplicationController
+require 'rack-flash'
 
+class CabinetsController < ApplicationController
+use Rack::Flash
   get '/mycabinets/new' do
     if Helpers.logged_in?(session)
       erb :'/cabinets/new'
@@ -59,11 +61,15 @@ class CabinetsController < ApplicationController
     if !@user
       redirect 'users/login'
     elsif !params[:cabinet_name].empty?
-      cabinet = Cabinet.create(name: params[:cabinet_name])
-      cabinet.user = @user
-      cabinet.strain_ids = params[:strains]
-      cabinet.save
-
+      if @user.cabinets.all?{|c| c.name != params[:cabinet_name]}
+        cabinet = Cabinet.create(name: params[:cabinet_name])
+        cabinet.user = @user
+        cabinet.strain_ids = params[:strains]
+        cabinet.save
+      else
+        flash[:message] = "There is already a cabinet by that name. Try again."
+        redirect '/mycabinets/new'
+      end
       redirect "/mycabinets/#{cabinet.slug}"
     else
       redirect 'users/login'
