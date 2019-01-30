@@ -1,9 +1,11 @@
 <% if flash.has?(:message) %>
  <b><%= flash[:message] %></b>
 <% end %>
-<a href="/myaccount">Home</a>
-<a href="/mycabinets/<%= @cabinet.slug %>/edit">Edit Cabinet</a>
-<a href="/strains">Strain Library</a>
+<div class="">
+  <a href="/myaccount">Home</a>
+  <a href="/mycabinets/<%= @cabinet.slug %>/edit">Edit Cabinet</a>
+  <a href="/strains">Strain Library</a>
+</div>
 <h1><%= @cabinet.name %></h1>
 
 <h2>Your collected Strains:</h2>
