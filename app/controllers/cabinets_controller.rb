@@ -12,15 +12,20 @@ use Rack::Flash
 
   post '/mycabinets/add' do
     @user = Helpers.current_user(session)
-    if !@user
-      redirect 'users/login'
-    else
+    if @user
       cabinet = Cabinet.find_by_id(params[:cabinet_id])
       strain = Strain.find_by_id(params[:strain])
-      cabinet.strains << strain
+      if cabinet.strains.all?{|s| s.name != strain.name}
+        cabinet.strains << strain
 
-
-      redirect "/mycabinets/#{cabinet.slug}"
+        flash[:message] = "#{strain.name} has been added to #{cabinet.name}"
+        redirect "/mycabinets/#{cabinet.slug}"
+      else
+        flash[:message] = "#{cabinet.name} already contains #{strain.name}"
+        redirect "/mycabinets/#{cabinet.slug}"
+      end
+    else
+      redirect 'users/login'
       # puts params
     end
   end
@@ -85,7 +90,7 @@ use Rack::Flash
     if Helpers.logged_in?(session)
       @cabinet = Cabinet.find_by_slug(params[:slug])
       if @cabinet.user == Helpers.current_user(session)
-        @cabinet.delete    
+        @cabinet.delete
       else
         flash[:message] = "Something went wrong. Try again."
         redirect to '/myaccount'
