@@ -19,4 +19,8 @@ And then:
 
     $rake db:seed
 
-You can type 'shotgun' in terminal and click link. 
+You can type 'shotgun' in terminal and click link.
+
+
+## License
+  [License](https://github.com/JustReggie2/the-cannabis-cabinet/blob/master/LICENSE)
