@@ -30,13 +30,18 @@ use Rack::Flash
   end
 
   post '/login' do
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect '/myaccount'
+    if User.find_by(username: params[:username]) == params[:username]
+      user = User.find_by(username: params[:username])
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect '/myaccount'
+        end
+        flash[:message] = "Incorrect password."
+        redirect '/login'
+    else
+      flash[:message] = "You must have account to login. Please sign up."
+      redirect '/signup'
     end
-    flash[:message] = "Incorrect password."
-    redirect '/login'
   end
 
   get '/myaccount' do
