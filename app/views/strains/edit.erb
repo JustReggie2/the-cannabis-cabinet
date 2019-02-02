@@ -13,12 +13,14 @@
         <% end %>
       </select>
     <br>
-    <label for="positives">Positive Effects:</label>
+    <label for="positives">Positive Effects:</label><br>
       <textarea name="positives" rows="8" cols="80"><%= @strain.positives %></textarea>
     <br>
-    <label for="negatives">Negative Effects:</label>
+    <label for="negatives">Negative Effects:</label><br>
       <textarea name="negatives" rows="8" cols="80"><%= @strain.negatives %></textarea>
     <br>
     <input type="submit" name="submit" value="Update Strain">
   </form>
+  <br>
+  <a href="/strains/<%= @strain.slug %>">Back</a>
 </div>
