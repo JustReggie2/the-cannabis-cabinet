@@ -21,6 +21,17 @@ And then:
 
 You can type 'shotgun' in terminal and click link.
 
+# Contributing
+
+Thank you for wanting to contribute to this project. I will assume that you have already utilized or looked at the project. If not, please do.
+
+## Testing
+
+Currently, there is RSpec to test existing code. If you do contribute, please write RSpec examples for any new code you create.
+
+## Submitting changes
+
+Please send a [GitHub Pull Request to JustReggie2](https://github.com/JustReggie2/the-cannabis-cabinet/pulls) with a list of what you've done. 
 
 ## License
   [License](https://github.com/JustReggie2/the-cannabis-cabinet/blob/master/LICENSE)
