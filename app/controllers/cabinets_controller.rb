@@ -37,6 +37,9 @@ use Rack::Flash
 
     if @cabinet.user == Helpers.current_user(session)
       erb :'cabinets/edit'
+    else
+      flash[:message] = "You don't have permission to edit this cabinet."
+      redirect '/myaccount'
     end
   end
 
@@ -49,14 +52,17 @@ use Rack::Flash
     erb :'cabinets/show'
   end
 
-  patch '/mycabinets/:slug' do
-    cabinet = Cabinet.find_by_slug(params[:slug])
-    if !params[:cabinet_name].empty?
-      cabinet.update(name: params[:cabinet_name])
-      cabinet.strain_ids = params[:strains]
-      cabinet.save
-      flash[:message] = "Cabinet updated successfully."
-      redirect "/mycabinets/#{cabinet.slug}"
+  patch '/mycabinets/:slug'
+  cabinet = Cabinet.find_by_slug(params[:slug])
+    if cabinet.user != Helpers.current_user(session)
+      flash[:message] = "You don't have permission to edit this cabinet."
+      redirect '/myaccount'
+    elsif !params[:cabinet_name].empty?
+        cabinet.update(name: params[:cabinet_name])
+        cabinet.strain_ids = params[:strains]
+        cabinet.save
+        flash[:message] = "Cabinet updated successfully."
+        redirect "/mycabinets/#{cabinet.slug}"
     else
       flash[:message] = "Cabinet name is required."
       redirect "/mycabinets/#{cabinet.slug}/edit"
