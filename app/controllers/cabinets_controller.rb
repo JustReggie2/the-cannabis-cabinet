@@ -31,7 +31,7 @@ use Rack::Flash
   end
 
   get '/mycabinets/:slug/edit' do
-    redirect 'users/login' unless Helpers.logged_in?(session)
+    redirect 'users/login' unless Helpers.logged_in?(session) #use elsewhere to clean up code - remove if/else statements
 
     @cabinet = Cabinet.find_by_slug(params[:slug])
 
