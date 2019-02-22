@@ -52,7 +52,7 @@ use Rack::Flash
     erb :'cabinets/show'
   end
 
-  patch '/mycabinets/:slug'
+  patch '/mycabinets/:slug' do
   cabinet = Cabinet.find_by_slug(params[:slug])
     if cabinet.user != Helpers.current_user(session)
       flash[:message] = "You don't have permission to edit this cabinet."
