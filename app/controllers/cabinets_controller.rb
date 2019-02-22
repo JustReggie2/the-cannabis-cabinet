@@ -3,11 +3,11 @@ require 'rack-flash'
 class CabinetsController < ApplicationController
 use Rack::Flash
   get '/mycabinets/new' do
-    if Helpers.logged_in?(session)
-      erb :'/cabinets/new'
-    else
-      redirect 'users/login'
+    unless Helpers.logged_in?(session)
+      flash[:message] = "Must be logged in to view this page."
+      redirect '/login'
     end
+    erb :'/cabinets/new'
   end
 
   post '/mycabinets/add' do
